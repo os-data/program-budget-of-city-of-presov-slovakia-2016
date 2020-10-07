@@ -1,0 +1,532 @@
+{
+  "model": {
+    "dimensions": {
+      "budget-line-id": {
+        "dimensionType": "fact",
+        "primaryKey": [
+          "id"
+        ],
+        "attributes": {
+          "id": {
+            "source": "id",
+            "title": "id"
+          }
+        }
+      },
+      "date": {
+        "dimensionType": "datetime",
+        "primaryKey": [
+          "year"
+        ],
+        "attributes": {
+          "year": {
+            "source": "year",
+            "title": "year"
+          }
+        }
+      },
+      "administrative-classification": {
+        "dimensionType": "classification",
+        "primaryKey": [
+          "name"
+        ],
+        "attributes": {
+          "name": {
+            "source": "name",
+            "title": "name"
+          }
+        },
+        "classificationType": "administrative"
+      },
+      "direction": {
+        "dimensionType": "other",
+        "primaryKey": [
+          "expense_revenue"
+        ],
+        "attributes": {
+          "expense_revenue": {
+            "source": "expense_revenue",
+            "title": "expense_revenue"
+          }
+        }
+      },
+      "economic-classification": {
+        "dimensionType": "classification",
+        "primaryKey": [
+          "ec_group_code",
+          "ec_subgroup_code",
+          "ec_item_code",
+          "ec_code"
+        ],
+        "attributes": {
+          "ec_group_code": {
+            "source": "ec_group_code",
+            "title": "ec_group_code"
+          },
+          "ec_group": {
+            "source": "ec_group",
+            "title": "ec_group",
+            "labelfor": "ec_group_code"
+          },
+          "ec_subgroup_code": {
+            "source": "ec_subgroup_code",
+            "title": "ec_subgroup_code",
+            "parent": "ec_group_code"
+          },
+          "ec_subgroup": {
+            "source": "ec_subgroup",
+            "title": "ec_subgroup",
+            "labelfor": "ec_subgroup_code"
+          },
+          "ec_item_code": {
+            "source": "ec_item_code",
+            "title": "ec_item_code",
+            "parent": "ec_subgroup_code"
+          },
+          "ec_item": {
+            "source": "ec_item",
+            "title": "ec_item",
+            "labelfor": "ec_item_code"
+          },
+          "ec_code": {
+            "source": "ec_code",
+            "title": "ec_code",
+            "parent": "ec_item_code"
+          },
+          "ec": {
+            "source": "ec",
+            "title": "ec",
+            "labelfor": "ec_code"
+          }
+        },
+        "classificationType": "economic"
+      },
+      "activity": {
+        "dimensionType": "activity",
+        "primaryKey": [
+          "program_code",
+          "subprogram_code",
+          "proj_item_number"
+        ],
+        "attributes": {
+          "program_code": {
+            "source": "program_code",
+            "title": "program_code"
+          },
+          "program": {
+            "source": "program",
+            "title": "program",
+            "labelfor": "program_code"
+          },
+          "subprogram_code": {
+            "source": "subprogram_code",
+            "title": "subprogram_code",
+            "parent": "program_code"
+          },
+          "subprogram": {
+            "source": "subprogram",
+            "title": "subprogram",
+            "labelfor": "subprogram_code"
+          },
+          "proj_item_number": {
+            "source": "proj_item_number",
+            "title": "proj_item_number",
+            "parent": "subprogram_code"
+          },
+          "proj_item": {
+            "source": "proj_item",
+            "title": "proj_item",
+            "labelfor": "proj_item_number"
+          }
+        }
+      },
+      "administrator": {
+        "dimensionType": "entity",
+        "primaryKey": [
+          "organization_id"
+        ],
+        "attributes": {
+          "organization_id": {
+            "source": "organization_id",
+            "title": "organization_id"
+          }
+        }
+      },
+      "functional-classification": {
+        "dimensionType": "classification",
+        "primaryKey": [
+          "functional_class_code",
+          "event_number"
+        ],
+        "attributes": {
+          "event_number": {
+            "source": "event_number",
+            "title": "event_number",
+            "parent": "functional_class_code"
+          },
+          "event_name": {
+            "source": "event_name",
+            "title": "event_name",
+            "labelfor": "event_number"
+          },
+          "functional_class_code": {
+            "source": "functional_class_code",
+            "title": "functional_class_code"
+          },
+          "functional_class": {
+            "source": "functional_class",
+            "title": "functional_class",
+            "labelfor": "functional_class_code"
+          }
+        },
+        "classificationType": "functional"
+      },
+      "expenditure-type": {
+        "dimensionType": "other",
+        "primaryKey": [
+          "budget_type",
+          "budgeted_item"
+        ],
+        "attributes": {
+          "budget_type": {
+            "source": "budget_type",
+            "title": "budget_type"
+          },
+          "budgeted_item": {
+            "source": "budgeted_item",
+            "title": "budgeted_item"
+          }
+        }
+      }
+    },
+    "measures": {
+      "amount_allocated": {
+        "source": "amount_allocated",
+        "title": "amount_allocated",
+        "currency": "EUR",
+        "phase": "approved"
+      },
+      "amount_adjusted": {
+        "source": "amount_adjusted",
+        "title": "amount_adjusted",
+        "currency": "EUR",
+        "phase": "adjusted"
+      },
+      "amount_spent": {
+        "source": "amount_spent",
+        "title": "amount_spent",
+        "currency": "EUR",
+        "phase": "executed"
+      }
+    }
+  },
+  "promise": {},
+  "regionCode": "eu",
+  "countryCode": "SK",
+  "cityCode": "PreÅ¡ov",
+  "fiscalPeriod": {
+    "start": "2016-01-01",
+    "end": "2016-12-31"
+  },
+  "title": "Program Budget of City of Presov, Slovakia - 2016",
+  "name": "presov.sk-program-budget-2016",
+  "description": "Program Budget of City of Presov for 2016.",
+  "resources": [
+    {
+      "name": "po-budget-2016",
+      "format": "csv",
+      "path": "PO-budget-2016.csv",
+      "mediatype": "text/csv",
+      "bytes": 3951895,
+      "dialect": {
+        "csvddfVersion": 1,
+        "delimiter": ",",
+        "lineTerminator": "\r\n"
+      },
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "title": "id",
+            "name": "id",
+            "slug": "id",
+            "type": "string",
+            "format": "default",
+            "osType": "budget-line-id",
+            "conceptType": "budget-line-id"
+          },
+          {
+            "title": "year",
+            "name": "year",
+            "slug": "year",
+            "type": "integer",
+            "format": "default",
+            "osType": "date:fiscal-year",
+            "conceptType": "date"
+          },
+          {
+            "title": "name",
+            "name": "name",
+            "slug": "name",
+            "type": "string",
+            "format": "default",
+            "osType": "administrative-classification:generic:description",
+            "conceptType": "administrative-classification"
+          },
+          {
+            "title": "amount_allocated",
+            "name": "amount_allocated",
+            "slug": "amount_allocated",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "amount_adjusted",
+            "name": "amount_adjusted",
+            "slug": "amount_adjusted",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "amount_spent",
+            "name": "amount_spent",
+            "slug": "amount_spent",
+            "type": "number",
+            "format": "default",
+            "osType": "value",
+            "conceptType": "value",
+            "decimalChar": ".",
+            "groupChar": ","
+          },
+          {
+            "title": "expense_revenue",
+            "name": "expense_revenue",
+            "slug": "expense_revenue",
+            "type": "string",
+            "format": "default",
+            "osType": "direction",
+            "conceptType": "direction"
+          },
+          {
+            "title": "ec_group_code",
+            "name": "ec_group_code",
+            "slug": "ec_group_code",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level1:code",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec_group",
+            "name": "ec_group",
+            "slug": "ec_group",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level1:label",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec_subgroup_code",
+            "name": "ec_subgroup_code",
+            "slug": "ec_subgroup_code",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level2:code:full",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec_subgroup",
+            "name": "ec_subgroup",
+            "slug": "ec_subgroup",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level2:label",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec_item_code",
+            "name": "ec_item_code",
+            "slug": "ec_item_code",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level3:code:full",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec_item",
+            "name": "ec_item",
+            "slug": "ec_item",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level3:label",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec_code",
+            "name": "ec_code",
+            "slug": "ec_code",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level4:code:full",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "ec",
+            "name": "ec",
+            "slug": "ec",
+            "type": "string",
+            "format": "default",
+            "osType": "economic-classification:generic:level4:label",
+            "conceptType": "economic-classification"
+          },
+          {
+            "title": "program_code",
+            "name": "program_code",
+            "slug": "program_code",
+            "type": "string",
+            "format": "default",
+            "osType": "activity:generic:program:code",
+            "conceptType": "activity"
+          },
+          {
+            "title": "program",
+            "name": "program",
+            "slug": "program",
+            "type": "string",
+            "format": "default",
+            "osType": "activity:generic:program:label",
+            "conceptType": "activity"
+          },
+          {
+            "title": "subprogram_code",
+            "name": "subprogram_code",
+            "slug": "subprogram_code",
+            "type": "string",
+            "format": "default",
+            "osType": "activity:generic:subprogram:code:part",
+            "conceptType": "activity"
+          },
+          {
+            "title": "subprogram",
+            "name": "subprogram",
+            "slug": "subprogram",
+            "type": "string",
+            "format": "default",
+            "osType": "activity:generic:subprogram:label",
+            "conceptType": "activity"
+          },
+          {
+            "title": "organization_id",
+            "name": "organization_id",
+            "slug": "organization_id",
+            "type": "string",
+            "format": "default",
+            "osType": "administrator:generic:id",
+            "conceptType": "administrator"
+          },
+          {
+            "title": "event_number",
+            "name": "event_number",
+            "slug": "event_number",
+            "type": "string",
+            "format": "default",
+            "osType": "functional-classification:generic:level2:code:part",
+            "conceptType": "functional-classification"
+          },
+          {
+            "title": "event_name",
+            "name": "event_name",
+            "slug": "event_name",
+            "type": "string",
+            "format": "default",
+            "osType": "functional-classification:generic:level2:label",
+            "conceptType": "functional-classification"
+          },
+          {
+            "title": "functional_class_code",
+            "name": "functional_class_code",
+            "slug": "functional_class_code",
+            "type": "string",
+            "format": "default",
+            "osType": "functional-classification:generic:level1:code",
+            "conceptType": "functional-classification"
+          },
+          {
+            "title": "functional_class",
+            "name": "functional_class",
+            "slug": "functional_class",
+            "type": "string",
+            "format": "default",
+            "osType": "functional-classification:generic:level1:label",
+            "conceptType": "functional-classification"
+          },
+          {
+            "title": "proj_item_number",
+            "name": "proj_item_number",
+            "slug": "proj_item_number",
+            "type": "string",
+            "format": "default",
+            "osType": "activity:generic:project:code:full",
+            "conceptType": "activity"
+          },
+          {
+            "title": "proj_item",
+            "name": "proj_item",
+            "slug": "proj_item",
+            "type": "string",
+            "format": "default",
+            "osType": "activity:generic:project:label",
+            "conceptType": "activity"
+          },
+          {
+            "title": "budget_type",
+            "name": "budget_type",
+            "slug": "budget_type",
+            "type": "string",
+            "format": "default",
+            "osType": "expenditure-type:code",
+            "conceptType": "expenditure-type"
+          },
+          {
+            "title": "budgeted_item",
+            "name": "budgeted_item",
+            "slug": "budgeted_item",
+            "type": "string",
+            "format": "default",
+            "osType": "expenditure-type:code",
+            "conceptType": "expenditure-type"
+          }
+        ],
+        "primaryKey": [
+          "id",
+          "year",
+          "expense_revenue",
+          "ec_group_code",
+          "ec_subgroup_code",
+          "ec_item_code",
+          "ec_code",
+          "program_code",
+          "subprogram_code",
+          "organization_id",
+          "event_number",
+          "functional_class_code",
+          "proj_item_number",
+          "budget_type",
+          "budgeted_item"
+        ]
+      }
+    }
+  ],
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
+  "owner": "1ae301d0fb4c5bd535ce8e2eadf7a668",
+  "author": "Peter Hanecak <hanecak@opendata.sk>",
+  "count_of_rows": 11393
+}
