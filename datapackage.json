@@ -235,7 +235,7 @@
     {
       "name": "po-budget-2016",
       "format": "csv",
-      "path": "https://storage.openspending.org/PO-budget-2016.csv",
+      "path": "https://storage.openspending.org/program-budget-of-city-of-presov-slovakia-2016/PO-budget-2016.csv",
       "mediatype": "text/csv",
       "bytes": 3951895,
       "dialect": {
